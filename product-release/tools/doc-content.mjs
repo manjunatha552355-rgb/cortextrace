@@ -423,7 +423,7 @@ Content-Type: application/json
       ['From source', 'Node.js 24 or later'],
     ], { widths: [22, 78] }),
     h2('Installation'),
-    p(`Installers are published on the [GitHub Releases page](${META.github}/releases). The 0.1.0 release provides the Windows NSIS installer and MSI package built and install-tested for this document; macOS and Linux packages are produced by the repository\'s release workflow once it has been run on those platforms.`),
+    p(`Installers are published on the [GitHub Releases page](${META.github}/releases). The repository\'s release workflow builds the 0.1.0 packages on GitHub-hosted runners: Windows (NSIS x64/arm64, MSI), macOS (DMG x64/arm64, universal PKG) and Linux (AppImage, DEB, RPM), with SHA-256 checksums. Continuous integration runs the unit tests and the desktop end-to-end test on all three operating systems. Only the Windows installer was also installed and tested on a physical machine for this document. All 0.1.0 packages are unsigned.`),
     ol(
       '**Windows:** run `Cortextrace-0.1.0-win-x64.exe` (per-user installation, no administrator rights) or deploy `Cortextrace-0.1.0-win-x64.msi`. Silent installation: `Cortextrace-0.1.0-win-x64.exe /S`. Release builds without a code-signing certificate trigger a SmartScreen prompt.',
       '**macOS:** open the DMG and drag Cortextrace to Applications, or run the PKG.',
