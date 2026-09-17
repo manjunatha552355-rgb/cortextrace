@@ -198,7 +198,7 @@ export class Store {
     const { where, params } = this.eventWhere(q);
     const limit = Math.min(Math.max(q.limit ?? 200, 1), 5000);
     const order = q.order === 'asc' ? 'ASC' : 'DESC';
-    const rows = this.db.prepare(`SELECT * FROM events ${where} ORDER BY ts ${order}, event_id LIMIT ? OFFSET ?`)
+    const rows = this.db.prepare(`SELECT * FROM events ${where} ORDER BY ts ${order}, id ${order} LIMIT ? OFFSET ?`)
       .all(...params, limit, Math.max(0, q.offset ?? 0)) as Row[];
     return rows.map(rowToEvent);
   }
@@ -433,7 +433,7 @@ export class Store {
 
   *iterateEvents(q: EventQuery): Generator<AgentEvent> {
     const { where, params } = this.eventWhere(q);
-    for (const r of this.db.prepare(`SELECT * FROM events ${where} ORDER BY ts ASC`).iterate(...params)) yield rowToEvent(r as Row);
+    for (const r of this.db.prepare(`SELECT * FROM events ${where} ORDER BY ts ASC, id ASC`).iterate(...params)) yield rowToEvent(r as Row);
   }
 }
 
