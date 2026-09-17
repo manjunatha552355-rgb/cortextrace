@@ -17,7 +17,9 @@ writeFileSync(join(home, 'config.json'), JSON.stringify({ api: { port: apiPort }
 const env = { ...process.env, CORTEXTRACE_HOME: home, CORTEXTRACE_E2E_DIR: shots, CORTEXTRACE_E2E_WAIT: '2200', ...(process.env.E2E_APP ? { CORTEXTRACE_ALLOW_E2E_IN_PACKAGED: '1' } : {}) };
 delete env.ELECTRON_RUN_AS_NODE;
 // E2E_APP runs an installed/packaged binary instead of the source checkout.
-const app = process.env.E2E_APP ? spawn(process.env.E2E_APP, [], { env, stdio: 'inherit' }) : spawn(electron, [root], { env, stdio: 'inherit' });
+// Headless Linux (xvfb) has no GPU; page capture fails with UnknownVizError unless GPU compositing is off.
+const gpuArgs = process.platform === 'linux' ? ['--disable-gpu'] : [];
+const app = process.env.E2E_APP ? spawn(process.env.E2E_APP, gpuArgs, { env, stdio: 'inherit' }) : spawn(electron, [root, ...gpuArgs], { env, stdio: 'inherit' });
 const exited = new Promise((r) => app.on('exit', r));
 
 // wait for API

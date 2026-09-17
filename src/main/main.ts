@@ -105,7 +105,7 @@ function createWindow() {
   });
   win.on('closed', () => { win = null; });
   // Packaged builds require a second explicit opt-in so a stray env var cannot trigger screenshot capture.
-  if (process.env.CORTEXTRACE_E2E_DIR && (!app.isPackaged || process.env.CORTEXTRACE_ALLOW_E2E_IN_PACKAGED === '1')) void runE2E(win, process.env.CORTEXTRACE_E2E_DIR);
+  if (process.env.CORTEXTRACE_E2E_DIR && (!app.isPackaged || process.env.CORTEXTRACE_ALLOW_E2E_IN_PACKAGED === '1')) runE2E(win, process.env.CORTEXTRACE_E2E_DIR).catch((e) => { console.error('e2e run failed:', e); app.exit(1); });
   if (DEV_URL) void win.loadURL(DEV_URL);
   else void win.loadFile(join(__dirname, 'renderer', 'index.html'));
 }
