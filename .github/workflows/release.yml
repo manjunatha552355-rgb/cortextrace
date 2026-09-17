@@ -33,7 +33,8 @@ jobs:
       - name: Icons
         shell: bash
         run: |
-          if [ "$RUNNER_OS" = "Linux" ]; then xvfb-run -a npx electron scripts/icons.cjs; else npx electron scripts/icons.cjs; fi
+          # Ubuntu 24.04 runners restrict unprivileged user namespaces, which Chromium's sandbox needs.
+          if [ "$RUNNER_OS" = "Linux" ]; then sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 && xvfb-run -a npx electron scripts/icons.cjs; else npx electron scripts/icons.cjs; fi
       - run: npm run build
       - name: Build installers
         run: npx electron-builder ${{ matrix.target }} --publish never

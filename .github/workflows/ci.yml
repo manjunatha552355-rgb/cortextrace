@@ -47,6 +47,10 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      # Ubuntu 24.04 runners restrict unprivileged user namespaces, which Chromium's sandbox needs.
+      - name: Allow Chromium sandbox (Linux)
+        if: runner.os == 'Linux'
+        run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
       - run: npx electron scripts/icons.cjs
         if: runner.os != 'Linux'
       - name: Icons (Linux, headless display)
