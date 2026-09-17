@@ -30,7 +30,7 @@ The build is reproducible from the lockfile. `scripts/build.mjs` bundles everyth
 | Platform | How | Secrets (CI) |
 |---|---|---|
 | Windows | Authenticode via electron-builder (`CSC_LINK` PFX), or Azure Trusted Signing (`win.azureSignOptions` in `electron-builder.yml`) | `WIN_CSC_LINK`, `WIN_CSC_KEY_PASSWORD` |
-| macOS | Developer ID Application + Installer certificates; hardened runtime with `build/entitlements.mac.plist`; notarization via notarytool | `CSC_LINK`/`CSC_KEY_PASSWORD` (p12), `APPLE_ID`, `APPLE_APP_SPECIFIC_PASSWORD`, `APPLE_TEAM_ID` |
+| macOS | Developer ID Application + Installer certificates; hardened runtime with `build/entitlements.mac.plist`; notarization via notarytool | `MAC_CSC_LINK`/`MAC_CSC_KEY_PASSWORD` (p12), `APPLE_ID`, `APPLE_APP_SPECIFIC_PASSWORD`, `APPLE_TEAM_ID` |
 | Linux | publish SHA256SUMS; optionally sign them with GPG and sign the `.deb`/`.rpm` repositories | maintainer GPG key |
 
 Without secrets the workflow still produces **unsigned** installers. Label those clearly in release notes.

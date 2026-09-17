@@ -37,18 +37,27 @@ jobs:
           if [ "$RUNNER_OS" = "Linux" ]; then sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 && xvfb-run -a npx electron scripts/icons.cjs; else npx electron scripts/icons.cjs; fi
       - run: npm run build
       - name: Build installers
-        run: npx electron-builder ${{ matrix.target }} --publish never
+        shell: bash
+        # Signing is optional. Empty secrets must stay unset: electron-builder resolves an empty CSC_LINK to the repo dir.
+        run: |
+          if [ "$RUNNER_OS" = "Windows" ] && [ -n "$WIN_CSC_LINK" ]; then export CSC_LINK="$WIN_CSC_LINK" CSC_KEY_PASSWORD="$WIN_CSC_KEY_PASSWORD"; fi
+          if [ "$RUNNER_OS" = "macOS" ] && [ -n "$MAC_CSC_LINK" ]; then export CSC_LINK="$MAC_CSC_LINK" CSC_KEY_PASSWORD="$MAC_CSC_KEY_PASSWORD"; fi
+          if [ "$RUNNER_OS" = "macOS" ] && [ -n "$APPLE_ID_SECRET" ]; then export APPLE_ID="$APPLE_ID_SECRET" APPLE_APP_SPECIFIC_PASSWORD="$APPLE_PW_SECRET" APPLE_TEAM_ID="$APPLE_TEAM_SECRET"; fi
+          npx electron-builder ${{ matrix.target }} --publish never
         env:
-          # Windows signing (optional): certificate as base64 PFX
-          CSC_LINK: ${{ secrets.WIN_CSC_LINK }}
-          CSC_KEY_PASSWORD: ${{ secrets.WIN_CSC_KEY_PASSWORD }}
-          # macOS signing + notarization (optional)
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
-          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          WIN_CSC_LINK: ${{ secrets.WIN_CSC_LINK }}
+          WIN_CSC_KEY_PASSWORD: ${{ secrets.WIN_CSC_KEY_PASSWORD }}
+          MAC_CSC_LINK: ${{ secrets.MAC_CSC_LINK }}
+          MAC_CSC_KEY_PASSWORD: ${{ secrets.MAC_CSC_KEY_PASSWORD }}
+          APPLE_ID_SECRET: ${{ secrets.APPLE_ID }}
+          APPLE_PW_SECRET: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_SECRET: ${{ secrets.APPLE_TEAM_ID }}
       - name: Checksums
         shell: bash
-        run: cd release && for f in *.exe *.msi *.dmg *.pkg *.AppImage *.deb *.rpm; do [ -f "$f" ] && shasum -a 256 "$f" >> SHA256SUMS-${{ runner.os }}.txt; done; true
+        run: |
+          cd release
+          sum() { if command -v sha256sum >/dev/null; then sha256sum "$1"; else shasum -a 256 "$1"; fi; }
+          for f in *.exe *.msi *.dmg *.pkg *.AppImage *.deb *.rpm; do if [ -f "$f" ]; then sum "$f" >> SHA256SUMS-${{ runner.os }}.txt; fi; done
       - uses: actions/upload-artifact@v4
         with:
           name: installers-${{ runner.os }}
