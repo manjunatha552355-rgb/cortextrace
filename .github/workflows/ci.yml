@@ -67,7 +67,7 @@ jobs:
         run: xvfb-run -a node scripts/e2e.mjs
         env:
           E2E_OUT: e2e-screenshots
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: e2e-screenshots-${{ matrix.os }}

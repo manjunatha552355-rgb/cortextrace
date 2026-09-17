@@ -58,7 +58,7 @@ jobs:
           cd release
           sum() { if command -v sha256sum >/dev/null; then sha256sum "$1"; else shasum -a 256 "$1"; fi; }
           for f in *.exe *.msi *.dmg *.pkg *.AppImage *.deb *.rpm; do if [ -f "$f" ]; then sum "$f" >> SHA256SUMS-${{ runner.os }}.txt; fi; done
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: installers-${{ runner.os }}
           path: |
