@@ -1,0 +1,72 @@
+appId: dev.cortextrace.desktop
+productName: Cortextrace
+copyright: Copyright © 2026 Manjunatha M, AI and ML consultants
+artifactName: ${productName}-${version}-${os}-${arch}.${ext}
+directories:
+  output: release
+  buildResources: build
+# Everything runtime-relevant is bundled into dist/ by scripts/build.mjs; no node_modules ship.
+files:
+  - dist/**/*
+  - package.json
+  - "!dist/**/*.map"
+extraResources:
+  - from: LICENSE
+    to: LICENSE
+  - from: THIRD_PARTY_NOTICES.md
+    to: THIRD_PARTY_NOTICES.md
+asar: true
+compression: normal
+
+win:
+  icon: build/icon.png
+  target:
+    - target: nsis
+      arch: [x64, arm64]
+    - target: msi
+      arch: [x64]
+  # Code signing: set CSC_LINK / CSC_KEY_PASSWORD (or Azure Trusted Signing) in CI. See docs/RELEASING.md.
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  license: LICENSE
+msi:
+  perMachine: false
+  createDesktopShortcut: true
+
+mac:
+  icon: build/icon.png
+  category: public.app-category.developer-tools
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  target:
+    - target: dmg
+      arch: [arm64, x64]
+    - target: pkg
+      arch: [universal]
+  # Notarization: set APPLE_ID, APPLE_APP_SPECIFIC_PASSWORD, APPLE_TEAM_ID. See docs/RELEASING.md.
+
+linux:
+  icon: build/icon.png
+  category: Development;Security
+  maintainer: Manjunatha M <Manjunatha@aiandmlconsultants.com>
+  synopsis: Observability and threat detection for AI agents
+  target:
+    - target: AppImage
+      arch: [x64, arm64]
+    - target: deb
+      arch: [x64, arm64]
+    - target: rpm
+      arch: [x64]
+  desktop:
+    entry:
+      StartupWMClass: Cortextrace
+deb:
+  depends: [libnotify4, libxtst6, libnss3]
+
+publish: null

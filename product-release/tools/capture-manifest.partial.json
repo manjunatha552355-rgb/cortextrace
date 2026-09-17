@@ -1,0 +1,628 @@
+[
+  {
+    "name": "01-onboarding-disclosure",
+    "title": "First-run disclosure",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Every data source disclosed",
+        "note": "Lists each monitored data source and what is never collected, before monitoring is used."
+      },
+      {
+        "n": 2,
+        "note": "States the local-first model: no account and no cloud upload; pause is always available."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "02-onboarding-agents",
+    "title": "First-run agent discovery",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Agents found from config locations",
+        "note": "Agents detected from known installation/configuration paths on this machine (demo profile)."
+      },
+      {
+        "n": 2,
+        "note": "One-click integration: writes the agent's native hook or telemetry configuration after creating a backup."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "03-overview",
+    "title": "Overview dashboard",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Navigation",
+        "note": "Monitor, Inventory, Activity and Manage sections; the Threats badge shows open alerts from the last 24 hours."
+      },
+      {
+        "n": 2,
+        "label": "Time range",
+        "note": "Global time range (15 minutes to 30 days) applied to every chart and table."
+      },
+      {
+        "n": 3,
+        "label": "KPIs",
+        "note": "Active agents, sessions, event rate, commands, file changes, tool/MCP calls, network connections and detections. Each tile links to its detail page."
+      },
+      {
+        "n": 4,
+        "label": "Activity by agent",
+        "note": "Stacked event counts per interval, one colour per agent; hover for values, click a column to open that window in the Timeline."
+      },
+      {
+        "n": 5,
+        "label": "Risk & agent distribution",
+        "note": "Sessions grouped by risk level and events per agent for the selected range."
+      },
+      {
+        "n": 6,
+        "label": "Monitoring state",
+        "note": "Current monitoring state and one-click pause/resume."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "04-overview-security",
+    "title": "Overview: detections and top activity",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Detections by severity",
+        "note": "Detections over time, stacked by severity."
+      },
+      {
+        "n": 2,
+        "label": "Top rules",
+        "note": "Most frequent rules with severity; click to filter the Threats view."
+      },
+      {
+        "n": 3,
+        "label": "Top commands",
+        "note": "Most frequent commands, tools and workspaces for the range."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "05-live-activity",
+    "title": "Live Activity stream",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Pause / resume",
+        "note": "Freezes the stream for inspection without stopping collection."
+      },
+      {
+        "n": 2,
+        "label": "Filter",
+        "note": "Client-side filters by text, agent and minimum severity."
+      },
+      {
+        "n": 3,
+        "label": "Event stream",
+        "note": "Virtualised list of normalised events: time (ms), agent, type, severity, summary and source (hook, otlp, process, synthetic…)."
+      },
+      {
+        "n": 4,
+        "label": "Rate",
+        "note": "Observed events per second and the number of rows shown."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "06-event-inspector",
+    "title": "Raw event inspector",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Normalised fields",
+        "note": "Schema fields: agent, session, source/fidelity, process, workspace, correlation and trace ids, labels."
+      },
+      {
+        "n": 2,
+        "label": "Redacted payload",
+        "note": "Type-specific payload after secret redaction and privacy minimisation."
+      },
+      {
+        "n": 3,
+        "label": "Copy JSON",
+        "note": "Copies the complete event for use in tickets or other tools."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "07-threats-incidents",
+    "title": "Threats: incidents and alerts",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Severity summary",
+        "note": "Open incidents and detection counts per severity and policy violations for the range."
+      },
+      {
+        "n": 2,
+        "label": "Views & filters",
+        "note": "Incidents vs. all detections; status (open/acknowledged/suppressed); minimum severity; search."
+      },
+      {
+        "n": 3,
+        "label": "Incident",
+        "note": "Alerts from the same session within 30 minutes are grouped into one incident; ×N shows de-duplicated repeats."
+      },
+      {
+        "n": 4,
+        "label": "Triage",
+        "note": "Acknowledge, suppress or reopen each alert."
+      },
+      {
+        "n": 5,
+        "label": "Dimensions",
+        "note": "Detections by risk dimension."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "08-detection-detail",
+    "title": "Detection detail and evidence",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Classification",
+        "note": "Observation, suspicious indicator or confirmed policy violation; nothing is labelled malicious from pattern alone."
+      },
+      {
+        "n": 2,
+        "label": "Recommended action",
+        "note": "Rule-specific next step for the analyst."
+      },
+      {
+        "n": 3,
+        "label": "Evidence",
+        "note": "Matched snippet with surrounding context."
+      },
+      {
+        "n": 4,
+        "label": "Triggering event",
+        "note": "The full (redacted) event that produced the detection."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "09-timeline",
+    "title": "Global timeline",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Search & severity",
+        "note": "Server-side search across event summaries, filtered by minimum severity."
+      },
+      {
+        "n": 2,
+        "label": "Export",
+        "note": "Exports the current query as JSONL or CSV (CSV cells are neutralised against formula injection)."
+      },
+      {
+        "n": 3,
+        "label": "Correlated events",
+        "note": "All agents in one timeline with session ids; drill-down filters (agent, session, correlation id, type, workspace) arrive from other pages."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "10-sessions",
+    "title": "Sessions",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Filter & sort",
+        "note": "Search by session, workspace or agent; active-only filter; sort by recency, risk or event count."
+      },
+      {
+        "n": 2,
+        "label": "Session inventory",
+        "note": "Agent, session id, workspace, start, duration, event count, status and risk score per session."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "11-session-detail",
+    "title": "Session timeline and risk explanation",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Session summary",
+        "note": "Agent, start, duration, event count, detections and risk score."
+      },
+      {
+        "n": 2,
+        "label": "Event groups",
+        "note": "Filter the timeline to commands, files, tools, network or security events."
+      },
+      {
+        "n": 3,
+        "label": "Replay",
+        "note": "Step through the session in order; later events fade until reached."
+      },
+      {
+        "n": 4,
+        "label": "Timeline",
+        "note": "Millisecond timestamps, event type, severity, summary, duration and source; tool results and detections indent under their correlated call."
+      },
+      {
+        "n": 5,
+        "label": "Risk explanation",
+        "note": "Score, per-dimension breakdown and every contributing factor with points, confidence and evidence."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "12-session-expanded",
+    "title": "Expanded timeline event",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Expanded detection",
+        "note": "Expanding an event shows its payload with links to the raw event and its parent (correlated) event."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "13-graph-session",
+    "title": "Relationship graph (one session)",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Node types",
+        "note": "Toggle agents, sessions, processes, commands, files, directories, tools, MCP servers, network endpoints and security events."
+      },
+      {
+        "n": 2,
+        "label": "Force-directed graph",
+        "note": "Nodes are sized by occurrences; rings mark elevated risk; edges are typed (executed, read, modified, called, connected_to, detected_by). Drag nodes, pan and zoom."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "14-graph-selection",
+    "title": "Relationship graph: node selection",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Selection",
+        "note": "Selecting a node highlights its direct neighbours and shows occurrences, maximum risk and connection count, with navigation actions."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "15-commands",
+    "title": "Command activity",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Activity by agent",
+        "note": "Command executions over time, per agent."
+      },
+      {
+        "n": 2,
+        "label": "Top binaries",
+        "note": "Most used executables; click to focus the table."
+      },
+      {
+        "n": 3,
+        "label": "Commands",
+        "note": "Each command with agent, severity and fidelity (observed vs. inferred)."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "16-files",
+    "title": "File activity",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Top directories",
+        "note": "Directories with the most read/write activity."
+      },
+      {
+        "n": 2,
+        "label": "File operations",
+        "note": "Reads, modifications, creations, deletions and directory access with paths; contents are never stored."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "17-mcp",
+    "title": "MCP servers and calls",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "MCP inventory",
+        "note": "Servers found in agent configuration files: client, transport, command/URL and environment variable names (never values)."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "18-network",
+    "title": "Network metadata",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Destinations",
+        "note": "Most contacted destinations for the range (connection metadata only: host/IP and port)."
+      },
+      {
+        "n": 2,
+        "label": "First-seen destinations",
+        "note": "Destinations outside the allowlist, first seen per agent."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "19-policies",
+    "title": "Policies and detection rules",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Policies",
+        "note": "User-defined policies with enable switch, mode (observe / alert / require approval), severity and scope; edited as validated JSON."
+      },
+      {
+        "n": 2,
+        "label": "Mode",
+        "note": "Require approval returns an \"ask\" decision to agents that support blocking hooks."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "20-rules",
+    "title": "Built-in detection rules",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Rule catalogue",
+        "note": "Every built-in rule with description, severity, risk dimension, classification, references and a per-rule enable switch."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "21-analytics",
+    "title": "Analytics",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Usage trend",
+        "note": "Events per agent per interval."
+      },
+      {
+        "n": 2,
+        "label": "Activity by type",
+        "note": "Commands, file operations, tool and MCP calls, network over time."
+      },
+      {
+        "n": 3,
+        "label": "Agent comparison",
+        "note": "Per-agent totals: events, sessions, commands, file changes, MCP calls, detections and peak event risk."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "22-analytics-behaviour",
+    "title": "Analytics: risk trend and behaviour",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Risk trend",
+        "note": "Detections over time by risk dimension."
+      },
+      {
+        "n": 2,
+        "label": "Activity heatmap",
+        "note": "Hour-of-week activity in local time."
+      },
+      {
+        "n": 3,
+        "label": "Command categories",
+        "note": "Commands grouped into categories such as version control, package & build, network."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "23-analytics-baselines",
+    "title": "Analytics: sessions and baselines",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Session durations",
+        "note": "Distribution of session durations (log-scaled bins)."
+      },
+      {
+        "n": 2,
+        "label": "Baselines",
+        "note": "Learned events-per-minute baseline per agent type used by the anomaly detector (learning until 30 samples)."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "24-settings-integrations",
+    "title": "Settings: integrations",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Integrations",
+        "note": "Hook and OpenTelemetry integrations per agent with config file and live status; enable/remove with automatic backup."
+      },
+      {
+        "n": 2,
+        "label": "Local endpoints",
+        "note": "Loopback API (token-authenticated) and OTLP/HTTP JSON receiver for any compatible agent."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "25-settings-privacy",
+    "title": "Settings: privacy",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Prompt retention",
+        "note": "Metadata only (default), redacted text or full text."
+      },
+      {
+        "n": 2,
+        "label": "Tool output",
+        "note": "Metadata only (default) or redacted and truncated to 2 KB."
+      },
+      {
+        "n": 3,
+        "label": "Always applied",
+        "note": "Protections that cannot be switched off: secret redaction, no file contents, no outbound traffic by default, loopback-only API."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "26-settings-general",
+    "title": "Settings: general and collectors",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Background operation",
+        "note": "Start at login and keep running in the tray."
+      },
+      {
+        "n": 2,
+        "label": "Collectors",
+        "note": "Each collector can be disabled; interval and workspace limits are configurable."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "27-settings-alerts",
+    "title": "Settings: detection and alerts",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Alert routing",
+        "note": "Alert threshold, desktop notification threshold, de-duplication window, optional webhook and suppressions."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "28-overview-dark",
+    "title": "Dark theme",
+    "annotations": [],
+    "missing": []
+  },
+  {
+    "name": "29-processes",
+    "title": "Process tree of a discovered agent",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Agent root process",
+        "note": "A running agent identified by its process signature (here a Node.js agent framework), with pid and session link."
+      },
+      {
+        "n": 2,
+        "label": "Descendant tree",
+        "note": "Child and grandchild processes spawned by the agent, with pid, name, command line and age."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "30-agents",
+    "title": "Agent inventory",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Inventory summary",
+        "note": "Running, installed, historically observed and untrusted agent counts."
+      },
+      {
+        "n": 2,
+        "label": "Filter & rescan",
+        "note": "Filter by running/installed/observed; rescan known installation locations."
+      },
+      {
+        "n": 3,
+        "label": "Agents",
+        "note": "Status, runtime, version, live process ids, sessions, last activity, 24-hour risk and trust (unreviewed / trusted / untrusted)."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "31-agent-detail",
+    "title": "Agent detail",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Identity",
+        "note": "Agent id, runtime, executable, install paths and declared adapter capabilities."
+      },
+      {
+        "n": 2,
+        "label": "Live processes",
+        "note": "Current root processes with child counts."
+      },
+      {
+        "n": 3,
+        "label": "Sessions",
+        "note": "Recent sessions with activity and risk; click to open the session timeline."
+      }
+    ],
+    "missing": []
+  },
+  {
+    "name": "32-system-health",
+    "title": "System health",
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Pipeline counters",
+        "note": "Stored, dropped and de-duplicated events, queue depth, CPU, memory, database size and uptime."
+      },
+      {
+        "n": 2,
+        "label": "Latency",
+        "note": "p50/p95 for pipeline, detection, storage, API and each collector."
+      },
+      {
+        "n": 3,
+        "label": "Collectors",
+        "note": "State, runs, failures, last run, duration and last error for each collector."
+      }
+    ],
+    "missing": []
+  }
+]

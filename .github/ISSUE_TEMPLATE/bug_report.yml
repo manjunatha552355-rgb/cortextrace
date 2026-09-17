@@ -1,0 +1,29 @@
+name: Bug report
+description: Something in Cortextrace does not work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Security vulnerabilities: do **not** file an issue. See [SECURITY.md](https://github.com/manjunatha552355-rgb/cortextrace/blob/main/SECURITY.md). Remove secrets, usernames and personal paths from logs before pasting."
+  - type: input
+    id: version
+    attributes: { label: Cortextrace version, placeholder: "0.1.0" }
+    validations: { required: true }
+  - type: dropdown
+    id: os
+    attributes: { label: Operating system, options: [Windows, macOS, Linux] }
+    validations: { required: true }
+  - type: input
+    id: agent
+    attributes: { label: Agent involved (if any), placeholder: "Claude Code, Cursor, custom…" }
+  - type: textarea
+    id: steps
+    attributes: { label: Steps to reproduce }
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes: { label: Expected vs actual behaviour }
+    validations: { required: true }
+  - type: textarea
+    id: logs
+    attributes: { label: Logs (redacted), render: text }

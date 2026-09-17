@@ -1,0 +1,652 @@
+{
+  "adapters": [
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "runtime": "node/native cli",
+      "caps": [
+        "process_discovery",
+        "hooks",
+        "otlp",
+        "approvals",
+        "prompts",
+        "tool_calls",
+        "file_events",
+        "mcp",
+        "require_approval"
+      ],
+      "hooks": true,
+      "installer": true,
+      "otlp": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "codex",
+      "name": "OpenAI Codex",
+      "runtime": "native cli",
+      "caps": [
+        "process_discovery",
+        "hooks",
+        "otlp",
+        "tool_calls",
+        "approvals"
+      ],
+      "hooks": true,
+      "installer": true,
+      "otlp": [
+        "codex",
+        "codex_cli_rs",
+        "codex-cli",
+        "codex_exec"
+      ]
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "runtime": "electron ide",
+      "caps": [
+        "process_discovery",
+        "hooks",
+        "prompts",
+        "tool_calls",
+        "file_events",
+        "mcp",
+        "require_approval"
+      ],
+      "hooks": true,
+      "installer": true,
+      "otlp": []
+    },
+    {
+      "id": "gemini-cli",
+      "name": "Gemini CLI",
+      "runtime": "node cli",
+      "caps": [
+        "process_discovery",
+        "otlp",
+        "tool_calls"
+      ],
+      "hooks": false,
+      "installer": true,
+      "otlp": [
+        "gemini-cli",
+        "gemini_cli"
+      ]
+    },
+    {
+      "id": "claude-desktop",
+      "name": "Claude Desktop / Cowork",
+      "runtime": "electron app",
+      "caps": [
+        "process_discovery",
+        "mcp"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": [
+        "claude-cowork"
+      ]
+    },
+    {
+      "id": "chatgpt-desktop",
+      "name": "ChatGPT Desktop",
+      "runtime": "native app",
+      "caps": [
+        "process_discovery"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "antigravity",
+      "name": "Google Antigravity",
+      "runtime": "electron ide",
+      "caps": [
+        "process_discovery",
+        "mcp"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "windsurf",
+      "name": "Windsurf",
+      "runtime": "electron ide",
+      "caps": [
+        "process_discovery",
+        "mcp"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "github-copilot-cli",
+      "name": "GitHub Copilot CLI",
+      "runtime": "node cli",
+      "caps": [
+        "process_discovery",
+        "otlp"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": [
+        "github-copilot",
+        "copilot-cli"
+      ]
+    },
+    {
+      "id": "github-copilot",
+      "name": "GitHub Copilot (VS Code)",
+      "runtime": "vscode extension",
+      "caps": [
+        "process_discovery",
+        "mcp"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "cline",
+      "name": "Cline",
+      "runtime": "vscode extension",
+      "caps": [
+        "process_discovery"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "roo-code",
+      "name": "Roo Code",
+      "runtime": "vscode extension",
+      "caps": [
+        "process_discovery"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "opencode",
+      "name": "OpenCode",
+      "runtime": "native cli",
+      "caps": [
+        "process_discovery",
+        "otlp"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "aider",
+      "name": "Aider",
+      "runtime": "python cli",
+      "caps": [
+        "process_discovery"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "goose",
+      "name": "goose",
+      "runtime": "native cli",
+      "caps": [
+        "process_discovery",
+        "otlp"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": [
+        "goose"
+      ]
+    },
+    {
+      "id": "amp",
+      "name": "Amp",
+      "runtime": "node cli",
+      "caps": [
+        "process_discovery"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "kiro",
+      "name": "Kiro",
+      "runtime": "electron ide",
+      "caps": [
+        "process_discovery"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama (local LLM)",
+      "runtime": "local llm server",
+      "caps": [
+        "process_discovery"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "lm-studio",
+      "name": "LM Studio (local LLM)",
+      "runtime": "local llm server",
+      "caps": [
+        "process_discovery"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "llama-cpp",
+      "name": "llama.cpp server",
+      "runtime": "local llm server",
+      "caps": [
+        "process_discovery"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "mcp-server",
+      "name": "MCP server process",
+      "runtime": "mcp",
+      "caps": [
+        "process_discovery",
+        "mcp"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "python-agent",
+      "name": "Python agent framework",
+      "runtime": "python",
+      "caps": [
+        "process_discovery"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    },
+    {
+      "id": "node-agent",
+      "name": "Node.js agent framework",
+      "runtime": "node",
+      "caps": [
+        "process_discovery"
+      ],
+      "hooks": false,
+      "installer": false,
+      "otlp": []
+    }
+  ],
+  "rules": [
+    {
+      "id": "cmd.destructive.rm_root",
+      "name": "Recursive delete of root or home",
+      "severity": "CRITICAL",
+      "dimension": "command",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.destructive.windows_wipe",
+      "name": "Recursive delete of a drive or profile (Windows)",
+      "severity": "CRITICAL",
+      "dimension": "command",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.destructive.disk",
+      "name": "Raw disk overwrite or filesystem creation",
+      "severity": "CRITICAL",
+      "dimension": "command",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.source_control.history_rewrite",
+      "name": "Destructive git operation",
+      "severity": "MEDIUM",
+      "dimension": "command",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.destructive.sql",
+      "name": "Destructive SQL statement",
+      "severity": "MEDIUM",
+      "dimension": "command",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.destructive.mass_delete",
+      "name": "Bulk deletion pipeline",
+      "severity": "LOW",
+      "dimension": "filesystem",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.privilege.elevation",
+      "name": "Privilege elevation",
+      "severity": "MEDIUM",
+      "dimension": "privilege",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.privilege.sudoers_setuid",
+      "name": "Sudoers, setuid or capability change",
+      "severity": "HIGH",
+      "dimension": "privilege",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.exec.download_and_execute",
+      "name": "Download piped to interpreter",
+      "severity": "HIGH",
+      "dimension": "command",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.exec.download_then_run",
+      "name": "Download then make executable",
+      "severity": "HIGH",
+      "dimension": "command",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.exec.encoded_command",
+      "name": "Encoded command execution",
+      "severity": "HIGH",
+      "dimension": "command",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.exec.obfuscation",
+      "name": "Shell obfuscation",
+      "severity": "MEDIUM",
+      "dimension": "command",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.exec.reverse_shell",
+      "name": "Reverse shell indicator",
+      "severity": "CRITICAL",
+      "dimension": "network",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.exec.suspicious_script",
+      "name": "Inline script with dynamic evaluation",
+      "severity": "MEDIUM",
+      "dimension": "command",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.exec.lolbin",
+      "name": "Living-off-the-land binary abuse",
+      "severity": "HIGH",
+      "dimension": "command",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.persistence.autostart",
+      "name": "Persistence mechanism created",
+      "severity": "HIGH",
+      "dimension": "persistence",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.defense_evasion.security_controls",
+      "name": "Security control disabled",
+      "severity": "HIGH",
+      "dimension": "privilege",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.defense_evasion.skip_verification",
+      "name": "Git hooks or verification bypassed",
+      "severity": "LOW",
+      "dimension": "policy",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.supply_chain.package_install",
+      "name": "Package installation",
+      "severity": "LOW",
+      "dimension": "command",
+      "classification": "observation"
+    },
+    {
+      "id": "cmd.supply_chain.untrusted_source",
+      "name": "Package installed from URL or VCS",
+      "severity": "MEDIUM",
+      "dimension": "command",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.credential.file_access",
+      "name": "Credential file read via shell",
+      "severity": "HIGH",
+      "dimension": "credential",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.credential.keychain",
+      "name": "OS credential store query",
+      "severity": "HIGH",
+      "dimension": "credential",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.credential.env_dump",
+      "name": "Environment secrets enumeration",
+      "severity": "MEDIUM",
+      "dimension": "credential",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.credential.cloud",
+      "name": "Cloud credential or metadata access",
+      "severity": "HIGH",
+      "dimension": "credential",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "cmd.exfiltration.upload",
+      "name": "File upload to remote host",
+      "severity": "HIGH",
+      "dimension": "data_access",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "file.credential.store",
+      "name": "Credential store accessed",
+      "severity": "HIGH",
+      "dimension": "credential",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "file.secret.dotenv",
+      "name": "Secrets file accessed",
+      "severity": "MEDIUM",
+      "dimension": "credential",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "file.system.sensitive",
+      "name": "Sensitive system file accessed",
+      "severity": "HIGH",
+      "dimension": "credential",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "file.persistence.write",
+      "name": "Persistence location modified",
+      "severity": "HIGH",
+      "dimension": "persistence",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "file.agent_control.modified",
+      "name": "Agent control file modified",
+      "severity": "MEDIUM",
+      "dimension": "policy",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "file.infrastructure.modified",
+      "name": "CI or infrastructure definition modified",
+      "severity": "LOW",
+      "dimension": "filesystem",
+      "classification": "observation"
+    },
+    {
+      "id": "file.network_config.modified",
+      "name": "Hosts or git remote configuration modified",
+      "severity": "MEDIUM",
+      "dimension": "network",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "net.metadata_service",
+      "name": "Cloud metadata service contacted",
+      "severity": "HIGH",
+      "dimension": "credential",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "net.exfil_service",
+      "name": "Known exfiltration or tunnelling service",
+      "severity": "HIGH",
+      "dimension": "data_access",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "content.prompt_injection.instruction_override",
+      "name": "Prompt-injection phrasing in tool output",
+      "severity": "HIGH",
+      "dimension": "mcp_tool",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "content.prompt_injection.hidden_unicode",
+      "name": "Invisible Unicode in content",
+      "severity": "HIGH",
+      "dimension": "mcp_tool",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "content.exfiltration.markdown_image",
+      "name": "Markdown image with data in URL",
+      "severity": "MEDIUM",
+      "dimension": "data_access",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "content.prompt_injection.user_prompt",
+      "name": "Jailbreak phrasing in prompt",
+      "severity": "LOW",
+      "dimension": "mcp_tool",
+      "classification": "suspicious_indicator"
+    },
+    {
+      "id": "mcp.arguments.sensitive",
+      "name": "Sensitive data passed to a tool",
+      "severity": "MEDIUM",
+      "dimension": "mcp_tool",
+      "classification": "suspicious_indicator"
+    }
+  ],
+  "event_types": [
+    "agent_started",
+    "agent_stopped",
+    "session_started",
+    "session_completed",
+    "prompt_observed",
+    "response_metadata",
+    "tool_call",
+    "tool_result",
+    "command_execution",
+    "process_started",
+    "process_exited",
+    "file_created",
+    "file_modified",
+    "file_deleted",
+    "file_read",
+    "directory_access",
+    "network_connection_metadata",
+    "mcp_call",
+    "mcp_server_activity",
+    "approval_requested",
+    "approval_granted",
+    "approval_denied",
+    "authentication_event",
+    "error",
+    "warning",
+    "security_detection",
+    "policy_violation"
+  ],
+  "risk_dimensions": [
+    "command",
+    "filesystem",
+    "network",
+    "credential",
+    "privilege",
+    "persistence",
+    "data_access",
+    "mcp_tool",
+    "anomaly",
+    "policy"
+  ],
+  "default_policies": [
+    "sensitive-directories",
+    "destructive-commands",
+    "package-installation",
+    "agent-self-configuration"
+  ],
+  "demo_db": {
+    "events": 7682,
+    "sessions": 718,
+    "detections": 141,
+    "alerts": 101,
+    "by_source": [
+      {
+        "source": "engine",
+        "n": 141
+      },
+      {
+        "source": "hook",
+        "n": 268
+      },
+      {
+        "source": "otlp",
+        "n": 17
+      },
+      {
+        "source": "process",
+        "n": 17
+      },
+      {
+        "source": "synthetic",
+        "n": 7239
+      }
+    ]
+  }
+}

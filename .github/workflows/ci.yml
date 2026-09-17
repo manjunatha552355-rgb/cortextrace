@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run licenses
+      - run: npm audit --audit-level=high
+      - name: Benchmark (small)
+        run: npm run bench
+        env:
+          BENCH_EVENTS: '20000'
+
+  e2e:
+    name: Desktop E2E (${{ matrix.os }})
+    needs: test
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx electron scripts/icons.cjs
+        if: runner.os != 'Linux'
+      - name: Icons (Linux, headless display)
+        if: runner.os == 'Linux'
+        run: xvfb-run -a npx electron scripts/icons.cjs
+      - run: npm run build
+      - name: E2E
+        if: runner.os != 'Linux'
+        run: node scripts/e2e.mjs
+        env:
+          E2E_OUT: e2e-screenshots
+      - name: E2E (Linux, headless display)
+        if: runner.os == 'Linux'
+        run: xvfb-run -a node scripts/e2e.mjs
+        env:
+          E2E_OUT: e2e-screenshots
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-screenshots-${{ matrix.os }}
+          path: e2e-screenshots

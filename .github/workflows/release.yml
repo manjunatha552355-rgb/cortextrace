@@ -1,0 +1,75 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Package (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: --win
+          - os: macos-latest
+            target: --mac
+          - os: ubuntu-latest
+            target: --linux
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run licenses
+      - name: Icons
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" = "Linux" ]; then xvfb-run -a npx electron scripts/icons.cjs; else npx electron scripts/icons.cjs; fi
+      - run: npm run build
+      - name: Build installers
+        run: npx electron-builder ${{ matrix.target }} --publish never
+        env:
+          # Windows signing (optional): certificate as base64 PFX
+          CSC_LINK: ${{ secrets.WIN_CSC_LINK }}
+          CSC_KEY_PASSWORD: ${{ secrets.WIN_CSC_KEY_PASSWORD }}
+          # macOS signing + notarization (optional)
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      - name: Checksums
+        shell: bash
+        run: cd release && for f in *.exe *.msi *.dmg *.pkg *.AppImage *.deb *.rpm; do [ -f "$f" ] && shasum -a 256 "$f" >> SHA256SUMS-${{ runner.os }}.txt; done; true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: installers-${{ runner.os }}
+          path: |
+            release/*.exe
+            release/*.msi
+            release/*.dmg
+            release/*.pkg
+            release/*.AppImage
+            release/*.deb
+            release/*.rpm
+            release/SHA256SUMS-*.txt
+
+  publish:
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" artifacts/* --draft --generate-notes --repo "$GITHUB_REPOSITORY"

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/manjunatha552355-rgb/cortextrace/security/advisories/new
+    about: Report privately. Please do not open a public issue.
+  - name: AI and ML consultants
+    url: https://aiandmlconsultants.com/
+    about: Maintainer website and contact

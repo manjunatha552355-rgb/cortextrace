@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Cortextrace mark: an open trace arc (the observed path) ending in a node (the agent), around a steady core (the observer). -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#23232a"/>
+      <stop offset="1" stop-color="#121216"/>
+    </linearGradient>
+  </defs>
+  <rect x="64" y="64" width="896" height="896" rx="200" fill="url(#bg)"/>
+  <path d="M 724 330 A 270 270 0 1 0 724 694" fill="none" stroke="#3987e5" stroke-width="72" stroke-linecap="round"/>
+  <circle cx="724" cy="694" r="62" fill="#f4f4f2"/>
+  <circle cx="525" cy="512" r="74" fill="#3987e5" opacity="0.9"/>
+</svg>

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+release/
+e2e-screenshots/
+*.log
+.DS_Store
+product-release/build/
+build/icon.png
+build/tray*.png
