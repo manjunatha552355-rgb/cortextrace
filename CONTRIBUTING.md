@@ -44,6 +44,17 @@ npm run e2e          # builds and launches the desktop app; look at the screensh
 
 Use the imperative mood and reference issues where relevant, for example `Fix duplicate command events from process snapshots (#123)`.
 
+## How issues are handled
+
+New issues are triaged by Claude, using [`.github/workflows/claude.yml`](.github/workflows/claude.yml):
+
+1. **Type label.** Claude applies one of `bug`, `feature`, `question` or `invalid`.
+2. **Missing details.** If details are missing, Claude labels the issue `needs-info` and asks for exactly what is missing. Reply in a comment on the issue and it will be re-evaluated.
+3. **Actionable bugs.** These are labelled `ready-for-fix`. A maintainer starts the fix by adding `claude-fix`. Claude then opens a pull request with a regression test, and the issue is labelled `fix-proposed`.
+4. **Review.** Pull requests from Claude are never merged automatically. A maintainer reviews and merges every one.
+
+Report security vulnerabilities privately as described in [SECURITY.md](SECURITY.md), not in an issue.
+
 ## License
 
 By contributing, you agree that your contributions are licensed under Apache-2.0.
