@@ -46,7 +46,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
     "d3-force": "^3.0.0",
-    "electron": "^44.4.1",
+    "electron": "^44.4.5",
     "electron-builder": "^26.15.3",
     "esbuild": "^0.28.2",
     "react": "^19.3.0",
